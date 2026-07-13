@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../utils/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../utils/constants';
 
 const Login = () => {
   const [email, setEmail] = useState('rohit.sharma@gmail.com')
@@ -14,13 +15,15 @@ const Login = () => {
     e.preventDefault()
 
     try {
-      const response = await axios.post('http://localhost:3000/auth/login', { email, password }, { withCredentials: true })
+      const response = await axios.post(`${BASE_URL}/auth/login`, { email, password }, { withCredentials: true })
       console.log('Login successful:', response.data);
       const user = response?.data?.user;
       dispatch(setUser(user));
       navigate('/feed');
     } catch (error) {
+      if(error.response && error.response.status === 401) {
       console.error('Login failed:', error)
+    }
     }
 
   }

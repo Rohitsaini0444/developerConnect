@@ -16,6 +16,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
           <Route path="/feed" element={<Feed />} />
           </Route>
+          <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </Router>
     </Provider>
