@@ -7,6 +7,9 @@ import { setUser } from "../utils/userSlice";
 const NavBar = () => {
     const user = useSelector((state) => state.user);
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const handleLogout = () => {
         try{
             axios.post(`${BASE_URL}/auth/logout`, {}, { withCredentials: true });
