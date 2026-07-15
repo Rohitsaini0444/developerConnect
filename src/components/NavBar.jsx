@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { setUser } from "../utils/userSlice";
@@ -11,11 +11,11 @@ const NavBar = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        try{
+        try {
             axios.post(`${BASE_URL}/auth/logout`, {}, { withCredentials: true });
             dispatch(setUser(null));
             navigate('/login');
-        }catch(error){
+        } catch (error) {
             console.error('Logout failed:', error);
         }
     }
